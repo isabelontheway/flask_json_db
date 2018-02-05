@@ -1,0 +1,5 @@
+flask_json_db.egg-info
+venv
+.idea
+**.pyc
+web_app/students.db
