@@ -1,0 +1,1 @@
+This is a flask application which can load a json file into a SQLite database and list the entries in the page.
