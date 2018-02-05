@@ -1,6 +1,13 @@
 {% extends "layout.html" %}
 {% block body %}
-    <table>
+    <form action="{{ url_for('web_app.add_entries') }}" method=post>
+        <dl>
+            <dt> Add student info:
+            <dd><textarea name=info rows=5 cols=40></textarea>
+            <dd><input type=submit value="Add">
+        </dl>
+    </form>
+    <table class="entries">
         <tr>
             <th>id</th>
             <th>name</th>
@@ -8,9 +15,9 @@
         </tr>
         {% for entry in entries %}
             <tr>
-                <th>entry.id</th>
-                <th>entry.name</th>
-                <th>entry.age</th>
+                <th>{{ entry.id }}</th>
+                <th>{{ entry.name }}</th>
+                <th>{{ entry.age }}</th>
             </tr>
         {% endfor %}
     </table>

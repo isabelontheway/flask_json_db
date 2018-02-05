@@ -9,7 +9,9 @@ def create_app(config=None):
     config = app.config
     config.update(dict(
         DATABASE=os.path.join(app.root_path, 'students.db'),
-        DEBUG=True
+        DEBUG=True,
+        SECRET_KEY=b'_5#y2L"F4Q8z\n\xec]/',
+
     ))
     config.update(config or {})
     config.from_envvar('FLASKR_SETTINGS', silent=True)

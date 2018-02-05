@@ -1,5 +1,8 @@
 import sqlite3
-from flask import Blueprint, current_app, g, render_template
+from flask import Blueprint, current_app, g, render_template, request, \
+    redirect, url_for, flash
+from json_to_db.json_db_converter import load_to_db
+
 
 bp = Blueprint('web_app', __name__)
 
@@ -33,4 +36,16 @@ def show_entries():
     db = get_db()
     cur = db.execute('select * from students order by id desc')
     student_entries = cur.fetchall()
+
     return render_template('show_entries.html', entries=student_entries)
+
+
+@bp.route('/add', methods=['POST'])
+def add_entries():
+    db = get_db()
+    student_info = request.form['info']
+    load_to_db(student_info, db)
+    db.commit()
+    flash('New entries has been successfully loaded')
+
+    return redirect(url_for('web_app.show_entries'))
