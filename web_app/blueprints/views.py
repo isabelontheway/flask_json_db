@@ -1,7 +1,7 @@
 import sqlite3
-from flask import Blueprint, current_app, g
+from flask import Blueprint, current_app, g, render_template
 
-bp = Blueprint('core', __name__)
+bp = Blueprint('web_app', __name__)
 
 
 def connect_db():
@@ -28,5 +28,9 @@ def get_db():
     return g.sqlite_db
 
 
-
-
+@bp.route('/')
+def show_entries():
+    db = get_db()
+    cur = db.execute('select * from students order by id desc')
+    student_entries = cur.fetchall()
+    return render_template('show_entries.html', entries=student_entries)

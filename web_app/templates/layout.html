@@ -2,13 +2,12 @@
 <title>Student Info</title>
 <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style.css')}}">
 <div class=page>
-    <h1>Flaskr</h1>
+    <h1>Student Info</h1>
     <div class=metanav>
-        <a href="{{ url_for('web_app.show_student_entries')}}">Student</a>
+        <a href="{{ url_for('web_app.show_entries')}}">Student</a>
     </div>
     {% for message in get_flashed_messages() %}
         <div class=flash>{{ message }}</div>
     {% endfor %}
     {% block body %}{% endblock %}
 </div>
-git
